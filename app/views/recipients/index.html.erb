@@ -1,0 +1,134 @@
+<div>
+  <div>
+    <h1>
+      List of all recipients
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new recipient
+    </h2>
+
+    <form action="/insert_recipient" method="post">
+      <div>
+        <label for="company_id_box">
+          Company
+        </label>
+
+        <input type="text" id="company_id_box" name="query_company_id">
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="email_box">
+          Email
+        </label>
+
+        <input type="text" id="email_box" name="query_email">
+      </div>
+
+      <div>
+        <label for="messages_count_box">
+          Messages count
+        </label>
+
+        <input type="text" id="messages_count_box" name="query_messages_count">
+      </div>
+
+      <button>
+        Create recipient
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Company
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Email
+        </th>
+
+        <th>
+          Messages count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_recipients.each do |a_recipient| %>
+      <tr>
+        <td>
+          <%= a_recipient.id %>
+        </td>
+
+        <td>
+          <%= a_recipient.company_id %>
+        </td>
+
+        <td>
+          <%= a_recipient.name %>
+        </td>
+
+        <td>
+          <%= a_recipient.email %>
+        </td>
+
+        <td>
+          <%= a_recipient.messages_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_recipient.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_recipient.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/recipients/<%= a_recipient.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

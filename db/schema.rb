@@ -10,6 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2023_05_24_184256) do
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "industry"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "email_body"
+    t.string "occasion"
+    t.string "discussion_topic"
+    t.integer "recipient_id"
+    t.string "llm_prompt"
+    t.integer "sender_id"
+    t.string "length"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "recipients", force: :cascade do |t|
+    t.integer "company_id"
+    t.string "name"
+    t.string "email"
+    t.integer "messages_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "first_name"
+    t.string "writing_sample"
+    t.string "default_industry"
+    t.integer "messages_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end
