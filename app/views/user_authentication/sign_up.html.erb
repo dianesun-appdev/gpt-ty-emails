@@ -1,45 +1,55 @@
-<h1>Sign up</h1>
+<h1>Create Account</h1>
 
 <form action="/insert_user" method="post">
-
+                
   <div>
-    <label for="email_box">Email</label>
-    <input id="email_box" name="query_email" placeholder="Choose a email..." type="text">
-  </div>
-                 
-  <div>
-    <label for="first_name_box">First name</label>
-      
+    <label for="first_name_box">First name <br> 
+    This will be used to sign-off generated emails, e.g., "Best, [your name]" </label> <br>
     <input type="text" id="first_name_box" name="query_first_name">
   </div>
+
+  <br>
+
+  <div>
+    <label for="email_box">Email</label><br>
+    <input id="email_box" name="query_email" placeholder="Choose a email..." type="text"><br>
+  </div>
+
+  <br>
          
   <div>
-    <label for="writing_sample_box">Writing sample</label>
-      
+    <label for="writing_sample_box">Writing Sample <br> Provide an thank-you email you've written to better emulate your tone and style (500 chars max). </label><br>
     <input type="text" id="writing_sample_box" name="query_writing_sample">
   </div>
-         
+
+  <br>
+
+  <p>Select your target industry:</p>
+  <input type="radio" id="consulting" name="query_default_industry" value="consulting">
+  <label for="consulting">Consulting</label><br>
+  <input type="radio" id="investment_banking" name="query_default_industry" value="investment_banking">
+  <label for="investment_banking">Investment Banking</label><br>
+  <input type="radio" id="technology" name="query_default_industry" value="technology">
+  <label for="technology">Technology</label><br>
+  <input type="radio" id="other" name="query_default_industry" value="other">
+  <label for="other">Other</label>
+
+  <br>
+  <br>
+            
   <div>
-    <label for="default_industry_box">Default industry</label>
-      
-    <input type="text" id="default_industry_box" name="query_default_industry">
-  </div>
-         
-  <div>
-    <label for="messages_count_box">Messages count</label>
-      
-    <input type="text" id="messages_count_box" name="query_messages_count">
-  </div>
-    
-  <div>
-    <label for="password_box">Password</label>
+    <label for="password_box">Password</label><br>
     <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
   </div>
 
+  <br>
+
   <div>
-    <label for="password_confirmation_box">Password Confirmation</label>
+    <label for="password_confirmation_box">Confirm password</label><br>
     <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password">
   </div>
+
+  <br>
 
   <button>
     Sign up

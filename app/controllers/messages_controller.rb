@@ -67,4 +67,9 @@ class MessagesController < ApplicationController
 
     redirect_to("/messages", { :notice => "Message deleted successfully."} )
   end
+
+  #user form to input the data for ChatGPT
+  def get_text_inputs
+    render( template: "/messages/input_form.html.erb" )
+  end 
 end

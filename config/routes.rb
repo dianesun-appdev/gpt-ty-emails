@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-
-
+  # Home Page - redirect to sign in if not signed in, otherwise go to email generation
+  get("/", controller: "messages", action: "get_text_inputs")
 
   # Routes for the Company resource:
 
