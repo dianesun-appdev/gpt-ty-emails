@@ -1,0 +1,66 @@
+<div >
+  <h5>
+    Edit User Account
+  </h5>
+
+  <% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+  <% end %>
+  <div>
+    <form action="/modify_user" method="post">
+              
+      <div>
+        <label for="email_box">Email</label>
+          
+        <input id="email_box" name="query_email" value="<%= @current_user.email %>">
+          
+      </div>
+                                    
+      <div>
+        <label for="first_name_box">First name</label>
+          
+        <input id="first_name_box" name="query_first_name" value="<%= @current_user.first_name %>">
+          
+      </div>
+                      
+      <div>
+        <label for="writing_sample_box">Writing sample</label>
+          
+        <input id="writing_sample_box" name="query_writing_sample" value="<%= @current_user.writing_sample %>">
+          
+      </div>
+                      
+      <div>
+        <label for="default_industry_box">Default industry</label>
+          
+        <input id="default_industry_box" name="query_default_industry" value="<%= @current_user.default_industry %>">
+          
+      </div>
+                      
+      <div>
+        <label for="messages_count_box">Messages count</label>
+          
+        <input id="messages_count_box" name="query_messages_count" value="<%= @current_user.messages_count %>">
+          
+      </div>
+              
+      <div>
+        <label for="password_box">Password</label>
+        <input id="password_box" name="query_password" placeholder="Choose a new password..." type="password">
+      </div>
+    
+      <div>
+        <label for="password_confirmation_box">Password Confirmation</label>
+        <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your new password..." type="password">
+      </div>
+
+      <button>
+        Update account
+      </button>
+    </form>
+  </div>
+</div>

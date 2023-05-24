@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Recipient #<%= @the_recipient.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/recipients">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_recipient/<%= @the_recipient.id %>">
+          Delete recipient
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Company
+      </dt>
+      <dd>
+        <%= @the_recipient.company_id %>
+      </dd>
+
+      <dt>
+        Email
+      </dt>
+      <dd>
+        <%= @the_recipient.email %>
+      </dd>
+
+      <dt>
+        Messages count
+      </dt>
+      <dd>
+        <%= @the_recipient.messages_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_recipient.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_recipient.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit recipient
+    </h2>
+
+    <form action="/modify_recipient/<%= @the_recipient.id %>"  method="post" >
+      <div>
+        <label for="company_id_box">
+          Company
+        </label>
+
+        <input type="text" id="company_id_box" name="query_company_id" value="<%= @the_recipient.company_id %>">
+      </div>
+
+      <div>
+        <label for="email_box">
+          Email
+        </label>
+
+        <input type="text" id="email_box" name="query_email" value="<%= @the_recipient.email %>">
+      </div>
+
+      <div>
+        <label for="messages_count_box">
+          Messages count
+        </label>
+
+        <input type="text" id="messages_count_box" name="query_messages_count" value="<%= @the_recipient.messages_count %>">
+      </div>
+
+      <button>
+        Update recipient
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
