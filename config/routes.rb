@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
 
-
   # Routes for the Company resource:
+
+  # TEST - USING GPT AI
+  get("/new_email", :controller => "messages", :action => "new")  
+  post("/generate_email_llm", :controller => "messages", :action => "return_message")
 
   # CREATE
   post("/insert_company", { :controller => "companies", :action => "create" })

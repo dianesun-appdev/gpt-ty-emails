@@ -1,4 +1,16 @@
 class MessagesController < ApplicationController
+  
+  def new 
+    render({ :template => "messages/make_new_email.html.erb" })
+  
+  end
+
+  def return_message #This is testing calling chatgpt API  
+
+    render(template: "messages/return_new_email.html.erb")
+  
+  end
+  
   def index
     matching_messages = Message.all
 

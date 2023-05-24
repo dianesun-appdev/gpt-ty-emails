@@ -16,4 +16,9 @@ class User < ApplicationRecord
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :presence => true
   has_secure_password
+
+  has_many  :messages, class_name: "Message", foreign_key: "sender_id", dependent: :destroy
+  has_many :recipients, through: :messages, source: :recipient
+
+
 end

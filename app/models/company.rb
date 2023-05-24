@@ -9,4 +9,5 @@
 #  updated_at :datetime         not null
 #
 class Company < ApplicationRecord
+  has_many :employees, class_name: "Recipient", foreign_key: "company_id", dependent: :nullify
 end

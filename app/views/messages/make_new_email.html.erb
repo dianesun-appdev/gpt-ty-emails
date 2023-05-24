@@ -1,0 +1,60 @@
+hello world
+
+<div>
+  <div>
+    <h1>
+      TEST: Make a new email using ChatGPT
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Provide Instructions to ChatGPT
+    </h2>
+
+    <form action="/generate_email_llm" method="post">
+
+        <div>
+        <label for="recipient_name_box">
+          Recipient's name
+        </label>
+
+        <input type="text" id="recipient_name_box" name="query_recipient_name">
+      </div>
+
+        <div>
+        <label for="recipient_id_box">
+          Recipient's email
+        </label>
+
+        <input type="text" id="recipient_email_box" name="query_recipient_email">
+      </div>
+
+
+      <div>
+        <label for="occasion_box">
+          Context for interaction (e.g., 1:1 coffee chat, firm presentation) 
+        </label>
+
+        <input type="text" id="occasion_box" name="query_occasion">
+      </div>
+
+      <div>
+        <label for="discussion_topic_box">
+          Highlight 1-2 topics discussed (e.g., recent project, office affiliation events)
+        </label>
+
+        <input type="text" id="discussion_topic_box" name="query_discussion_topic">
+      </div>
+
+      <button>
+        Generate email
+      </button>
+      
+    </form>
+  </div>
+</div>
