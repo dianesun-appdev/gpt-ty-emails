@@ -8,17 +8,17 @@ class UserAuthenticationController < ApplicationController
 
   def create_cookie
     user = User.where({ :email => params.fetch("query_email") }).first
-    
+
     the_supplied_password = params.fetch("query_password")
-    
+
     if user != nil
       are_they_legit = user.authenticate(the_supplied_password)
-    
+
       if are_they_legit == false
         redirect_to("/user_sign_in", { :alert => "Incorrect password." })
       else
         session[:user_id] = user.id
-      
+
         redirect_to("/", { :notice => "Signed in successfully." })
       end
     else
@@ -50,41 +50,45 @@ class UserAuthenticationController < ApplicationController
 
     if save_status == true
       session[:user_id] = @user.id
-   
-      redirect_to("/", { :notice => "User account created successfully."})
+
+      redirect_to("/", { :notice => "User account created successfully." })
     else
       redirect_to("/user_sign_up", { :alert => @user.errors.full_messages.to_sentence })
     end
   end
-    
+
   def edit_profile_form
     render({ :template => "user_authentication/edit_profile.html.erb" })
   end
 
   def update
     @user = @current_user
-    @user.email = params.fetch("query_email")
-    @user.password = params.fetch("query_password")
-    @user.password_confirmation = params.fetch("query_password_confirmation")
+    #@user.email = params.fetch("query_email") #not an option to change password
+
+    if !params["query_password"].blank? && !params["query_password_confirmation"].blank? #only update these if the user entered something for both
+      @user.password = params.fetch("query_password")
+      @user.password_confirmation = params.fetch("query_password_confirmation")
+    end
+
     @user.first_name = params.fetch("query_first_name")
     @user.writing_sample = params.fetch("query_writing_sample")
     @user.default_industry = params.fetch("query_default_industry")
-    @user.messages_count = params.fetch("query_messages_count")
-    
+    #@user.messages_count = params.fetch("query_messages_count")
+
     if @user.valid?
       @user.save
 
-      redirect_to("/", { :notice => "User account updated successfully."})
+      redirect_to("/edit_user_profile", { :notice => "User account updated successfully." })
     else
-      render({ :template => "user_authentication/edit_profile_with_errors.html.erb" , :alert => @user.errors.full_messages.to_sentence })
+      redirect_to("/edit_user_profile", alert: @user.errors.full_messages.to_sentence)
     end
+
   end
 
   def destroy
     @current_user.destroy
     reset_session
-    
+
     redirect_to("/", { :notice => "User account cancelled" })
   end
- 
 end
