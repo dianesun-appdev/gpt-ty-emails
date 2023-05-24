@@ -16,6 +16,19 @@
   </head>
 
   <body>
-    <%= yield %>
+  
+  <!-- Navigation header links  -->
+
+  <p>
+  Signed in as <%= User.where(id: session[:user_id])[0].first_name %> |   
+  <a href = "/user_sign_out">Sign out</a> 
+  <p>
+
+  <a href = "/">Generate emails</a> |
+  <a href = "/messages">View all emails</a> |  
+  <a href = "/edit_user_profile">Update profile</a> |
+  </p>
+  
+  <%= yield %>
   </body>
 </html>
