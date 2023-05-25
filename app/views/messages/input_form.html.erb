@@ -1,1 +1,98 @@
-Hello world!!
+<!--Input form for user to generate one email. 
+URL = /generate_email -->
+
+<div>
+  <div>
+    <h1>
+      Generate a new thank-you email
+    </h1>
+
+    <h3> 
+      Recipient Information 
+    </h3>
+
+    <div>
+    <label for="recipient_name_box">
+      Name
+    </label> <br>
+    <input type="text" id="recipient_name_box" name="query_recipient_name">
+    </div>     
+    
+    <br>
+
+    <div>
+    <label for="company_name">
+        Company 
+    </label><br>
+    <input type="text" id="company_id_box" name="query_company_id">
+    </div>
+
+    <br>
+
+    <div>
+    <label for="email_box">
+      Email
+    </label><br>
+    <input type="text" id="email_box" name="query_email">
+    </div>
+
+    <br>
+
+    <h3> 
+      Email Body Information 
+    </h3>
+
+
+    <div>
+    <label for="occasion_box">
+    Occasion <br>
+    Provide context for your recruiting interaction (e.g., coffee chat, company presentation, small group dinner, interview)
+    </label><br>
+
+        <input type="text" id="occasion_box" name="query_occasion">
+      </div>
+
+      <br>
+
+      <div>
+        <label for="discussion_topic_box"> 
+          Topics to include<br>
+          Provide one or more topics from your interaction to mention (e.g., recent projects, employee affiliation groups, international opportunities)
+        </label><br>
+
+        <input type="text" id="discussion_topic_box" name="query_discussion_topic">
+      </div>
+
+      <br>
+
+      <div>
+        <label for="additional_instructions_box">
+          Additional instructions<br>
+          Provide any additional requirements for the email (e.g., make follow-up requests, use a warm tone, express excitement for job)
+        </label><br>
+
+        <input type="text" id="additional_instructions_box" name="query_additional_instructions">
+      </div>
+
+      <br>
+
+      <div>
+
+      <input type="checkbox" id="emulate_style_box" name="query_emulate_style" value="true">
+      <label for="emulate_style"> Emulate writing style from sample? </label><br>
+
+      <p> Your sample: <br>
+      <i>"<%= current_user.writing_sample %>"</i> 
+      <p>
+
+      </div>
+
+      <br>
+
+      <button>
+        Generate Email
+      </button>
+    </form>
+
+  </div>
+</div>

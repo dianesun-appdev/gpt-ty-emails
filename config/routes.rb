@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  # Home Page - redirect to sign in if not signed in, otherwise go to email generation
-  get("/", controller: "messages", action: "get_text_inputs")
+  # go to email generation by default
+  get("/", controller: "messages", action: "get_email_inputs")
+  get("/generate_email", controller: "messages", action: "get_email_inputs")
 
+
+  #
   # Routes for the Company resource:
 
   # CREATE

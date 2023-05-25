@@ -69,7 +69,7 @@ class MessagesController < ApplicationController
   end
 
   #user form to input the data for ChatGPT
-  def get_text_inputs
+  def get_email_inputs
     render( template: "/messages/input_form.html.erb" )
   end 
 end

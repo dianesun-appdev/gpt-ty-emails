@@ -7,13 +7,14 @@
     <form action="/modify_user" method="post">
       
       <div>
-        <label for="first_name_box">First name</label>
+        <label for="first_name_box">First name</label><br>
         <input id="first_name_box" name="query_first_name" value="<%= @current_user.first_name %>">
       </div> <br>
 
       <div>
-        <label for="writing_sample_box">Writing sample (max 500 chars)</label> <br>
-        <textarea id="writing_sample_box" name="query_writing_sample" maxlength = 500> <%= @current_user.writing_sample %> </textarea><br>
+        <label for="writing_sample_box">Writing sample<br>
+        Enter a thank-you email you've written to better emulate your tone and style (500 chars max) </label> <br>
+        <textarea id="writing_sample_box" name="query_writing_sample" maxlength = 500 cols = "75" rows = "10"><%= @current_user.writing_sample %></textarea><br>
 
       </div>
 
@@ -37,19 +38,19 @@
        <br>
 
       <div>
-        <label for="password_box">Password</label>
+        <label for="password_box">Change password</label><br>
         <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
-      </div>
+      </div><br>
     
       <div>
-        <label for="password_confirmation_box">Password Confirmation</label>
+        <label for="password_confirmation_box">Confirm new password </label><br>
         <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password">
       </div>
 
       <br>
 
       <button>
-        Update account
+        Update profile
       </button>
       
     </form>
