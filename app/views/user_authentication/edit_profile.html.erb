@@ -9,11 +9,12 @@
       <div>
         <label for="first_name_box">First name</label>
         <input id="first_name_box" name="query_first_name" value="<%= @current_user.first_name %>">
-      </div>
+      </div> <br>
 
       <div>
-        <label for="writing_sample_box">Writing sample</label>
-        <input id="writing_sample_box" name="query_writing_sample" value="<%= @current_user.writing_sample %>">
+        <label for="writing_sample_box">Writing sample (max 500 chars)</label> <br>
+        <textarea id="writing_sample_box" name="query_writing_sample" maxlength = 500> <%= @current_user.writing_sample %> </textarea><br>
+
       </div>
 
       <p>Select your target industry:</p>
