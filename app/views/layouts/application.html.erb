@@ -29,20 +29,23 @@
 
   <% if logged_in? %>
     <div class=align_right>
-    Signed in as <%= User.where(id: session[:user_id])[0].first_name %> |
+     Signed in as <%= User.where(id: session[:user_id])[0].first_name %> &nbsp |  &nbsp
     <a href = "/user_sign_out">Sign out</a> 
     </div>
 
-     <div>
-      <a href = "/generate_email">Generate an email</a> |
-      <a href = "/display_email">View all emails</a> |  
-      <a href = "/edit_user_profile">Update profile</a>
+     <div  style ="vertical-align: middle; display : flex; align-items : center;">
+      <img src = "tyGPT-Logo.png" style="width: 7%;">
+      <a href = "/generate_email" class = margin >Generate an email</a> |
+      <a href = "/display_email"  class = margin> View all emails</a> |  
+      <a href = "/edit_user_profile"  class = margin >Update profile</a>
+      </div>
       </div>
 
 
   <% else nil %>
   <% end %>
   </div>
+  <hr>
   <%= yield %>
   </body>
 </html>

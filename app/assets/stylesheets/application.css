@@ -28,3 +28,16 @@
 .bold {
   font-weight: bold;
 }
+
+.scale25.{
+  width: 25%;
+  height: 25%;
+
+}
+
+.margin{
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+
+}
