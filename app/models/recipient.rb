@@ -10,12 +10,12 @@
 #  company_id     :integer
 #
 class Recipient < ApplicationRecord
-  has_many  :messages, class_name: "Message", foreign_key: "recipient_id", dependent: :nullify
+  has_many :messages, class_name: "Message", foreign_key: "recipient_id", dependent: :nullify
 
   belongs_to :company, class_name: "Company", foreign_key: "company_id"
 
-  has_many :senders, through: :messages, source: :sender 
+  has_many :senders, through: :messages, source: :sender
 
   validates :email, :uniqueness => { :case_sensitive => false }
-
+  validates :email, :presence => true
 end

@@ -10,6 +10,8 @@
 #
 class Company < ApplicationRecord
   has_many :employees, class_name: "Recipient", foreign_key: "company_id", dependent: :nullify
-
   validates :name, :uniqueness => { :case_sensitive => false }
+  validates :name, :presence => true
+
+  
 end

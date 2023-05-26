@@ -74,55 +74,69 @@ class MessagesController < ApplicationController
   end
 
   #send back the generated email
+
   def return_email_text
+    alerts = [] #set this up
+
+    the_company_name = params.fetch("query_company_name")
+
+    if Company.where(name: the_company_name).at(0).nil? #if there is no company name in DB already...
+      #not really ideal, because one company can go by many names/abbreviations. Not really worth to validate for MVP though. Let's just save the data
+      the_company = Company.new
+      the_company.name = the_company_name
+      if the_company.valid?
+        the_company.save
+        #want to add alerts and stuff here later
+      else
+        alerts << "Company name can't be blank"
+      end
+    else
+      the_company = Company.where(name: the_company_name).at(0) #select the active company
+    end
+
+    the_recipient_email = params.fetch("query_email")
+
+    if Recipient.where(email: the_recipient_email).at(0).nil? #if there is no email in DB already...
+      #we make new record in DB
+      the_recipient = Recipient.new
+      the_recipient.company_id = the_company.id #save the company ID corresponding to company name
+      the_recipient.email = params.fetch("query_email").squish
+      if the_recipient.valid?
+        the_recipient.save
+        #want to add alerts and stuff here later
+      else
+        alerts << "Recipient email can't be blank"
+      end
+    else
+      the_recipient = Recipient.where(email: the_recipient_email).at(0) #select the active recipient
+    end
+
     the_message = Message.new
     the_message.sender_id = current_user.id
     the_message.occasion = params.fetch("query_occasion")
     the_message.discussion_topic = params.fetch("query_discussion_topic")
     the_message.recipient_name = params.fetch("query_recipient_name")
-
-    the_company_name = params.fetch("query_company_name")
-    the_recipient_email = params.fetch("query_email")
-
-    if Company.where(name: the_company_name).at(0).null? #if there is no company name in DB already...
-      #not really ideal, because one company can go by many names/abbreviations. Not really worth to validate for MVP though. Let's just save the data
-      the_company = Company.new
-      the_company.name = the_company_name
-      the_company.save
-    else
-      the_company = Company.where(name: the_company_name).at(0) #select the active company
-    end
-
-    if Recipients.where(recipients: the_recipient_email).at(0).null? #if there is no email in DB already...
-      #we make new record in DB
-      the_recipient = Recipient.new
-      the_recipient.company_id = the_company.name #save the company ID corresponding to company name
-      the_recipient.email = params.fetch("query_email")
-      the_recipient.messages_count = params.fetch("query_messages_count")
-      the_recipient.save 
-
-    else
-      the_recipient = Recipient.where(email: the_recipient_email).at(0) #select the active recipient
-    end
+    the_message.recipient_id = the_recipient.id
 
     #the_message.length = params.fetch("query_length") #not implemented yet
-
-    #the_message.email_body = params.fetch("query_email_body")
-    #the_message.recipient_id = params.fetch("query_recipient_id")
     #the_message.llm_prompt = params.fetch("query_llm_prompt")
     #the_message.api_response = params.fetch("query_api_response")
 
-    @test = the_message
+    the_message.email_body = "You're MBA student recruiting for #{current_user.default_industry}. Write succinct & professional thank-you email to an employee after an interaction. 
+    Employee's Name: #{the_message.recipient_name}
+    Company: #{the_company.name}
+    Context: #{the_message.occasion}
+    What to mention from the interaction: #{the_message.discussion_topic}
+    Additionally: #{params["query_additional_instructions"]}"
 
-    if the_message.valid?
-      the_message.save
-      redirect_to("/display_email")
+    if !the_message.valid? #if message is not valid, exit
+      alerts << the_message.errors.full_messages.to_sentence
+      redirect_to("/generate_email", :alert => alerts)
     else
-      redirect_to("/generate_email", { :alert => the_message.errors.full_messages.to_sentence })
+      the_message.save
+      the_message = Message.where(sender_id: current_user.id).order(created_at: :desc).last
+      redirect_to("/display_email", the_message: the_message)
     end
-
-    #save user inputs stuff in the database
-
     #create string to use as GPT prompt
 
     #save GPT response in the database OR throw error
@@ -130,7 +144,6 @@ class MessagesController < ApplicationController
     #create  template for email reply
 
     #page where you can generate another!
-
   end
 
   def display_email

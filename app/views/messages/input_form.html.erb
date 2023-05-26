@@ -5,15 +5,13 @@ URL = /generate_email -->
 Generate a new thank-you email
 </h1>
 
-  <% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
+  <div class="alert"> 
+    <%= flash[:alert] %>
   </div>
 
 <div>
   <div>
 
-<% end %>
 
     <form action="/return_email_text" method="post"> 
 
@@ -23,7 +21,7 @@ Generate a new thank-you email
 
       <div>
       <label for="recipient_name_box">
-        Addressed to
+        Name 
       </label> <br>
       <input type="text" id="recipient_name_box" name="query_recipient_name">
       </div>     
