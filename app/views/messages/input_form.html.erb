@@ -20,8 +20,8 @@ Generate a new thank-you email
         Email Recipient Information 
       </h3>
 
-      <div>
-      <label for="recipient_name_box">
+      <div> 
+      <label for="recipient_name_box"  class = bold>
         Name 
       </label> <br>
       <input type="text" id="recipient_name_box" name="query_recipient_name">
@@ -30,7 +30,7 @@ Generate a new thank-you email
       <br>
 
       <div>
-      <label for="company_name">
+      <label for="company_name"  class = bold>
           Company 
       </label><br>
       <input type="text" id="company_name_box" name="query_company_name">
@@ -39,7 +39,7 @@ Generate a new thank-you email
       <br>
 
       <div>
-      <label for="email_box">
+      <label for="email_box"  class = bold>
         Email
       </label><br>
       <input type="text" id="email_box" name="query_email">
@@ -54,7 +54,7 @@ Generate a new thank-you email
 
       <div>
       <label for="occasion_box">
-      Occasion <br>
+      <div class = bold> Occasion </div>
       Provide context for your recruiting interaction (e.g., coffee chat, company presentation, small group dinner, interview)
       </label><br>
 
@@ -65,7 +65,7 @@ Generate a new thank-you email
 
       <div>
         <label for="discussion_topic_box"> 
-          Topics to include (Optional)<br>
+           <div class = bold> Topics to include (Optional) </div>
           Provide one or more topics from your interaction to mention (e.g., recent projects, employee affiliation groups, international opportunities)
         </label><br>
 
@@ -76,7 +76,7 @@ Generate a new thank-you email
 
       <div>
         <label for="additional_instructions_box">
-          Additional instructions (Optional)<br>
+           <div class = bold> Additional instructions (Optional)</div>
           Provide any additional requirements for the email (e.g., make follow-up requests, use a warm tone, express excitement for job)
         </label><br>
 
@@ -88,7 +88,7 @@ Generate a new thank-you email
       <div>
 
       <input type="checkbox" id="emulate_style_box" name="query_emulate_style" value="true">
-      <label for="emulate_style"> Emulate writing style from sample? </label><br>
+      <label for="emulate_style" class = bold> Emulate writing style from sample? </label><br>
 
       <p> Your sample: <br>
       <i>"<%= current_user.writing_sample %>"</i> 

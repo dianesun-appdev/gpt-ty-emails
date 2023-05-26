@@ -16,4 +16,15 @@
  .container {
   width: 50%;       /* Use 50% of the screen width */
   margin: 0 auto;   /* Center the content on the page */
+  font-family: 'Questrial', sans-serif;
+  line-height: 150%;
+
+}
+
+.align_right {
+  text-align: right;
+}
+
+.bold {
+  font-weight: bold;
 }

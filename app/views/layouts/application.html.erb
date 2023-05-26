@@ -14,29 +14,33 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+
+
   </head>
 
   <body>
   
   <div class=container>
+
   <!-- Navigation header links  -->
 
-  <p>
+  <div class=align_right>
   <% if logged_in? %>
-     Signed in as <%= User.where(id: session[:user_id])[0].first_name %> |
-    <a href = "/user_sign_out">Sign out</a> 
+  Signed in as <%= User.where(id: session[:user_id])[0].first_name %> |
+  <a href = "/user_sign_out">Sign out</a> 
   <% else nil %>
   <% end %>
-  <p>
-
-  <!-- Alerts / errors / system messages  -->
+  </div>
 
 
+  <div>
   <a href = "/generate_email">Generate an email</a> |
   <a href = "/display_email">View all emails</a> |  
   <a href = "/edit_user_profile">Update profile</a>
-  </p>
-
+  </div>
   </div>
 
 
