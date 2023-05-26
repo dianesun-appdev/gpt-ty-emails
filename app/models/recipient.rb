@@ -14,6 +14,8 @@ class Recipient < ApplicationRecord
 
   belongs_to :company, class_name: "Company", foreign_key: "company_id"
 
-  has_many :senders, through: :messages, source: :sender
+  has_many :senders, through: :messages, source: :sender 
+
+  validates :email, :uniqueness => { :case_sensitive => false }
 
 end

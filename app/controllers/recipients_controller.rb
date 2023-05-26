@@ -41,7 +41,7 @@ class RecipientsController < ApplicationController
 
     if the_recipient.valid?
       the_recipient.save
-      redirect_to("/recipients/#{the_recipient.id}", { :notice => "Recipient updated successfully."} )
+      redirect_to("/recipients/#{the_recipient.id}", { :notice => "Recipient updated successfully." })
     else
       redirect_to("/recipients/#{the_recipient.id}", { :alert => the_recipient.errors.full_messages.to_sentence })
     end
@@ -53,6 +53,6 @@ class RecipientsController < ApplicationController
 
     the_recipient.destroy
 
-    redirect_to("/recipients", { :notice => "Recipient deleted successfully."} )
+    redirect_to("/recipients", { :notice => "Recipient deleted successfully." })
   end
 end

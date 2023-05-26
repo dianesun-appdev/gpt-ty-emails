@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   # go to email generation by default
   get("/", controller: "messages", action: "get_email_inputs")
-  get("/generate_email", controller: "messages", action: "get_email_inputs")
 
+  get("/generate_email", controller: "messages", action: "get_email_inputs") #get the email inputs from the user 
+  
+  post("/return_email_text", controller: "messages", action: "return_email_text") #LLM API call and return email body
 
-  #
+  get("/display_email", controller: "messages", action: "display_email")
+
   # Routes for the Company resource:
 
   # CREATE
