@@ -1,18 +1,13 @@
 <div>
   <div>
     <h2>
-      Your email details
+      Subject: <%= @email_subject %>
     </h2>
 
     <dl>
-      <dt>
-        Generated email
-      </dt>
-      <dd>
-        <%= @the_message.email_body %>
-      </dd> 
+        <%= @email_body %>
 
-      <br>
+      <br><br>
 
       <dt>
         Occasion 

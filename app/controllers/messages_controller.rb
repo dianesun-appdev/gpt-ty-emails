@@ -157,9 +157,9 @@ class MessagesController < ApplicationController
     @the_message = matching_messages.at(0)
 
     #This should have been different 2 fields in the database model, oops!!!
-
-    @email_subject
-    @email_body
+    email_parse = @the_message.email_body.split("Body: ")
+    @email_subject = email_parse[0].gsub("Subject: ", "")
+    @email_body = email_parse[1]
 
     render({ :template => "messages/show.html.erb" })
   end
