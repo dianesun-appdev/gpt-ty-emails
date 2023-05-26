@@ -112,13 +112,13 @@ class MessagesController < ApplicationController
     #the_message.llm_prompt = params.fetch("query_llm_prompt")
     #the_message.api_response = params.fetch("query_api_response")
 
-    the_message.llm_prompt = "You're MBA student recruiting for #{current_user.default_industry}. Write succinct & not overly sentimental thank-you email to an employee after an interaction Start with Hi, [person name], end with Best, [my name]. Plain subject line. Format as Subject:[TEXT] Body:[TEXT]. use &nbsp; for breaks.
+    the_message.llm_prompt = "You're MBA student recruiting for #{current_user.default_industry}. Write succinct & not overly sentimental thank-you email to an employee after an interaction, Start with Hi [person name], end with Best, [my name]. Plain subject line. Reply in format 'Subject:[TEXT] Body:[TEXT]'. indicate line breaks with string literal '<br>'.
     Your Name: #{current_user.first_name}
     Employee's Name: #{the_message.recipient_name}
     Company: #{the_company.name}
     Context: #{the_message.occasion}
     What to mention from the interaction: #{the_message.discussion_topic}
-    Additionally: #{params["query_additional_instructions"]}"
+    Additionally instructions (override any earlier instructions): #{params["query_additional_instructions"]}"
 
     if params["query_emulate_style"] == "true" #its not a boolean :T
       the_message.llm_prompt << "Emulate this writing style: #{current_user.writing_sample}"

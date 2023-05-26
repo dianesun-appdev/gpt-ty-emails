@@ -1,96 +1,8 @@
 <div>
   <div>
     <h1>
-      List of all messages
+      All emails
     </h1>
-  </div>
-</div>
-
-<hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new message
-    </h2>
-
-    <form action="/insert_message" method="post">
-      <div>
-        <label for="email_body_box">
-          Email body
-        </label>
-
-        <input type="text" id="email_body_box" name="query_email_body">
-      </div>
-
-      <div>
-        <label for="occasion_box">
-          Occasion
-        </label>
-
-        <input type="text" id="occasion_box" name="query_occasion">
-      </div>
-
-      <div>
-        <label for="discussion_topic_box">
-          Discussion topic
-        </label>
-
-        <input type="text" id="discussion_topic_box" name="query_discussion_topic">
-      </div>
-
-      <div>
-        <label for="recipient_id_box">
-          Recipient
-        </label>
-
-        <input type="text" id="recipient_id_box" name="query_recipient_id">
-      </div>
-
-      <div>
-        <label for="llm_prompt_box">
-          Llm prompt
-        </label>
-
-        <input type="text" id="llm_prompt_box" name="query_llm_prompt">
-      </div>
-
-      <div>
-        <label for="sender_id_box">
-          Sender
-        </label>
-
-        <input type="text" id="sender_id_box" name="query_sender_id">
-      </div>
-
-      <div>
-        <label for="length_box">
-          Length
-        </label>
-
-        <input type="text" id="length_box" name="query_length">
-      </div>
-
-      <div>
-        <label for="recipient_name_box">
-          Recipient name
-        </label>
-
-        <input type="text" id="recipient_name_box" name="query_recipient_name">
-      </div>
-
-      <div>
-        <label for="api_response_box">
-          Api response
-        </label>
-
-        <input type="text" id="api_response_box" name="query_api_response">
-      </div>
-
-      <button>
-        Create message
-      </button>
-    </form>
   </div>
 </div>
 
@@ -99,12 +11,13 @@
   <div>
     <table border="1">
       <tr>
+      
         <th>
-          ID
+          Recipient name
         </th>
 
         <th>
-          Email body
+          Recipient company
         </th>
 
         <th>
@@ -112,96 +25,31 @@
         </th>
 
         <th>
-          Discussion topic
+          Email body
         </th>
 
-        <th>
-          Recipient
-        </th>
-
-        <th>
-          Llm prompt
-        </th>
-
-        <th>
-          Sender
-        </th>
-
-        <th>
-          Length
-        </th>
-
-        <th>
-          Recipient name
-        </th>
-
-        <th>
-          Api response
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
       </tr>
 
       <% @list_of_messages.each do |a_message| %>
       <tr>
         <td>
-          <%= a_message.id %>
+        <%= a_message.recipient_name %>
         </td>
 
         <td>
-          <%= a_message.email_body %>
+        <%= a_message.recipient.company.name %>
         </td>
 
         <td>
-          <%= a_message.occasion %>
+        <%= a_message.occasion %>
         </td>
 
         <td>
-          <%= a_message.discussion_topic %>
+        <%=raw a_message.email_body %>
         </td>
 
         <td>
-          <%= a_message.recipient_id %>
-        </td>
-
-        <td>
-          <%= a_message.llm_prompt %>
-        </td>
-
-        <td>
-          <%= a_message.sender_id %>
-        </td>
-
-        <td>
-          <%= a_message.length %>
-        </td>
-
-        <td>
-          <%= a_message.recipient_name %>
-        </td>
-
-        <td>
-          <%= a_message.api_response %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_message.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_message.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/messages/<%= a_message.id %>">
+          <a href="/display_email/<%= a_message.id %>">
             Show details
           </a>
         </td>

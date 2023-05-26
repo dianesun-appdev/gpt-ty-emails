@@ -5,7 +5,7 @@
     </h2>
 
     <dl>
-        <%= @email_body %>
+        <%= @email_body .html_safe%>
 
       <br><br>
 
@@ -39,8 +39,6 @@
         <%= @the_message.recipient.company.name %>
       </dd>      <br>
 
-
-
       <dt>
       Recipient email
       </dt>
@@ -48,7 +46,12 @@
         <%= @the_message.recipient.email.downcase %>
       </dd>      <br>
 
-
+      <dt>
+      Generated on
+      </dt>
+      <dd>
+        <%= @the_message.created_at %>
+      </dd><br>
 
     </dl>
   </div>
