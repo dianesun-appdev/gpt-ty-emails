@@ -3,6 +3,7 @@
   <head>
     <title>Base Rails</title>
     <%= csrf_meta_tags %>
+    
 
     <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
     <meta charset="utf-8">
@@ -17,6 +18,7 @@
 
   <body>
   
+  <div class=container>
   <!-- Navigation header links  -->
 
   <p>
@@ -27,12 +29,17 @@
   <% end %>
   <p>
 
+  <!-- Alerts / errors / system messages  -->
+
+
   <a href = "/generate_email">Generate an email</a> |
   <a href = "/display_email">View all emails</a> |  
   <a href = "/edit_user_profile">Update profile</a>
   </p>
 
-  <!-- Alerts / errors / system messages  -->
+  </div>
+
+
 
   <%= yield %>
   </body>
