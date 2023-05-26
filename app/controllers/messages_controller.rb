@@ -7,16 +7,6 @@ class MessagesController < ApplicationController
     render({ :template => "messages/index.html.erb" })
   end
 
-  def show
-    the_id = params.fetch("path_id")
-
-    matching_messages = Message.where({ :id => the_id })
-
-    @the_message = matching_messages.at(0)
-
-    render({ :template => "messages/show.html.erb" })
-  end
-
   def create
     the_message = Message.new
     the_message.email_body = params.fetch("query_email_body")
@@ -122,31 +112,55 @@ class MessagesController < ApplicationController
     #the_message.llm_prompt = params.fetch("query_llm_prompt")
     #the_message.api_response = params.fetch("query_api_response")
 
-    the_message.email_body = "You're MBA student recruiting for #{current_user.default_industry}. Write succinct & professional thank-you email to an employee after an interaction. 
+    the_message.llm_prompt = "You're MBA student recruiting for #{current_user.default_industry}. Write succinct & not overly sentimental thank-you email to an employee after an interaction Start with Hi, [person name], end with Best, [my name]. Plain subject line. Format as Subject:[TEXT] Body:[TEXT]. use &nbsp; for breaks.
+    Your Name: #{current_user.first_name}
     Employee's Name: #{the_message.recipient_name}
     Company: #{the_company.name}
     Context: #{the_message.occasion}
     What to mention from the interaction: #{the_message.discussion_topic}
     Additionally: #{params["query_additional_instructions"]}"
 
+    if params["query_emulate_style"] == "true" #its not a boolean :T
+      the_message.llm_prompt << "Emulate this writing style: #{current_user.writing_sample}"
+    end
+
+    #### Call upon CHATGPT ####
+
+    client = OpenAI::Client.new(access_token: "#{ENV.fetch("CHATGPT_KEY")}")
+
+    response = client.chat(
+      parameters: {
+        model: "gpt-4", # Required.
+        messages: [{ role: "user", content: "#{the_message.llm_prompt}" }], # Required.
+        temperature: 0.7,
+      },
+    )
+    the_message.api_response = response
+    the_message.email_body = response.dig("choices", 0, "message", "content")
+
+    #### #### ####
+
     if !the_message.valid? #if message is not valid, exit
       alerts << the_message.errors.full_messages.to_sentence
       redirect_to("/generate_email", :alert => alerts)
     else
       the_message.save
-      the_message = Message.where(sender_id: current_user.id).order(created_at: :desc).last
-      redirect_to("/display_email", the_message: the_message)
+      redirect_to("/display_email/#{the_message.id}", notice: "Email successfully generated.")
     end
-    #create string to use as GPT prompt
-
-    #save GPT response in the database OR throw error
-
-    #create  template for email reply
-
-    #page where you can generate another!
   end
 
-  def display_email
-    render(template: "/messages/display_email.html.erb")
+  def show
+    the_id = params.fetch("path_id")
+
+    matching_messages = Message.where({ :id => the_id })
+
+    @the_message = matching_messages.at(0)
+
+    #This should have been different 2 fields in the database model, oops!!!
+
+    @email_subject
+    @email_body
+
+    render({ :template => "messages/show.html.erb" })
   end
 end

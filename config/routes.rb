@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   
   post("/return_email_text", controller: "messages", action: "return_email_text") #LLM API call and return email body
 
-  get("/display_email", controller: "messages", action: "display_email")
+  #get("/display_email", controller: "messages", action: "display_email")
+
+  get("/display_email/:path_id", { :controller => "messages", :action => "show" })
 
   # Routes for the Company resource:
 
@@ -53,9 +55,7 @@ Rails.application.routes.draw do
           
   # READ
   get("/messages", { :controller => "messages", :action => "index" })
-  
-  get("/messages/:path_id", { :controller => "messages", :action => "show" })
-  
+    
   # UPDATE
   
   post("/modify_message/:path_id", { :controller => "messages", :action => "update" })

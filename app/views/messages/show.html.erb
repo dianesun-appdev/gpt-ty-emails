@@ -1,191 +1,74 @@
 <div>
   <div>
-    <h1>
-      Message #<%= @the_message.id %> details
-    </h1>
-
-    <div>
-      <div>
-        <a href="/messages">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_message/<%= @the_message.id %>">
-          Delete message
-        </a>
-      </div>
-    </div>
+    <h2>
+      Your email details
+    </h2>
 
     <dl>
       <dt>
-        Email body
+        Generated email
       </dt>
       <dd>
         <%= @the_message.email_body %>
-      </dd>
+      </dd> 
+
+      <br>
 
       <dt>
-        Occasion
+        Occasion 
       </dt>
       <dd>
         <%= @the_message.occasion %>
       </dd>
 
+      <br>
+
       <dt>
-        Discussion topic
+        Discussion topics
       </dt>
       <dd>
         <%= @the_message.discussion_topic %>
-      </dd>
+      </dd>      <br>
 
       <dt>
-        Recipient
-      </dt>
-      <dd>
-        <%= @the_message.recipient_id %>
-      </dd>
-
-      <dt>
-        Llm prompt
-      </dt>
-      <dd>
-        <%= @the_message.llm_prompt %>
-      </dd>
-
-      <dt>
-        Sender
-      </dt>
-      <dd>
-        <%= @the_message.sender_id %>
-      </dd>
-
-      <dt>
-        Length
-      </dt>
-      <dd>
-        <%= @the_message.length %>
-      </dd>
-
-      <dt>
-        Recipient name
+      Recipient name
       </dt>
       <dd>
         <%= @the_message.recipient_name %>
-      </dd>
+      </dd>      <br>
 
       <dt>
-        Api response
+      Recipient company
       </dt>
       <dd>
-        <%= @the_message.api_response %>
-      </dd>
+        <%= @the_message.recipient.company.name %>
+      </dd>      <br>
+
+
 
       <dt>
-        Created at
+      Recipient email
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_message.created_at) %> ago
-      </dd>
+        <%= @the_message.recipient.email.downcase %>
+      </dd>      <br>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_message.updated_at) %> ago
-      </dd>
+
+
     </dl>
   </div>
 </div>
 
-<hr>
-
-
-<div>
-  <div>
-    <h2>
-      Edit message
-    </h2>
-
-    <form action="/modify_message/<%= @the_message.id %>"  method="post" >
+    <div>
       <div>
-        <label for="email_body_box">
-          Email body
-        </label>
-
-        <input type="text" id="email_body_box" name="query_email_body" value="<%= @the_message.email_body %>">
+        <a href="/generate_email">
+          Generate another email 
+        </a>
       </div>
 
       <div>
-        <label for="occasion_box">
-          Occasion
-        </label>
-
-        <input type="text" id="occasion_box" name="query_occasion" value="<%= @the_message.occasion %>">
+        <a href="/delete_message/<%= @the_message.id %>">
+          Delete email
+        </a>
       </div>
-
-      <div>
-        <label for="discussion_topic_box">
-          Discussion topic
-        </label>
-
-        <input type="text" id="discussion_topic_box" name="query_discussion_topic" value="<%= @the_message.discussion_topic %>">
-      </div>
-
-      <div>
-        <label for="recipient_id_box">
-          Recipient
-        </label>
-
-        <input type="text" id="recipient_id_box" name="query_recipient_id" value="<%= @the_message.recipient_id %>">
-      </div>
-
-      <div>
-        <label for="llm_prompt_box">
-          Llm prompt
-        </label>
-
-        <input type="text" id="llm_prompt_box" name="query_llm_prompt" value="<%= @the_message.llm_prompt %>">
-      </div>
-
-      <div>
-        <label for="sender_id_box">
-          Sender
-        </label>
-
-        <input type="text" id="sender_id_box" name="query_sender_id" value="<%= @the_message.sender_id %>">
-      </div>
-
-      <div>
-        <label for="length_box">
-          Length
-        </label>
-
-        <input type="text" id="length_box" name="query_length" value="<%= @the_message.length %>">
-      </div>
-
-      <div>
-        <label for="recipient_name_box">
-          Recipient name
-        </label>
-
-        <input type="text" id="recipient_name_box" name="query_recipient_name" value="<%= @the_message.recipient_name %>">
-      </div>
-
-      <div>
-        <label for="api_response_box">
-          Api response
-        </label>
-
-        <input type="text" id="api_response_box" name="query_api_response" value="<%= @the_message.api_response %>">
-      </div>
-
-      <button>
-        Update message
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
+    </div>
