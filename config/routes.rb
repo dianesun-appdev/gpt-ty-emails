@@ -22,41 +22,41 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  # Routes for the Company resource:
+  # # Routes for the Company resource:
 
-  # CREATE
-  post("/insert_company", { :controller => "companies", :action => "create" })
+  # # CREATE
+  # post("/insert_company", { :controller => "companies", :action => "create" })
 
-  # READ
-  get("/companies", { :controller => "companies", :action => "index" })
+  # # READ
+  # get("/companies", { :controller => "companies", :action => "index" })
 
-  get("/companies/:path_id", { :controller => "companies", :action => "show" })
+  # get("/companies/:path_id", { :controller => "companies", :action => "show" })
 
-  # UPDATE
+  # # UPDATE
 
-  post("/modify_company/:path_id", { :controller => "companies", :action => "update" })
+  # post("/modify_company/:path_id", { :controller => "companies", :action => "update" })
 
-  # DELETE
-  get("/delete_company/:path_id", { :controller => "companies", :action => "destroy" })
+  # # DELETE
+  # get("/delete_company/:path_id", { :controller => "companies", :action => "destroy" })
 
-  #------------------------------
+  # #------------------------------
 
-  # Routes for the Recipient resource:
+  # # Routes for the Recipient resource:
 
-  # CREATE
-  post("/insert_recipient", { :controller => "recipients", :action => "create" })
+  # # CREATE
+  # post("/insert_recipient", { :controller => "recipients", :action => "create" })
 
-  # READ
-  get("/recipients", { :controller => "recipients", :action => "index" })
+  # # READ
+  # get("/recipients", { :controller => "recipients", :action => "index" })
 
-  get("/recipients/:path_id", { :controller => "recipients", :action => "show" })
+  # get("/recipients/:path_id", { :controller => "recipients", :action => "show" })
 
-  # UPDATE
+  # # UPDATE
 
-  post("/modify_recipient/:path_id", { :controller => "recipients", :action => "update" })
+  # post("/modify_recipient/:path_id", { :controller => "recipients", :action => "update" })
 
-  # DELETE
-  get("/delete_recipient/:path_id", { :controller => "recipients", :action => "destroy" })
+  # # DELETE
+  # get("/delete_recipient/:path_id", { :controller => "recipients", :action => "destroy" })
 
   #------------------------------
 
